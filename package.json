@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "video.js": "^7.7.5",
+    "videojs-framebyframe": "^1.0.1",
+    "videojs-hotkeys": "^0.2.25",
     "vue": "^2.6.11"
   },
   "devDependencies": {
