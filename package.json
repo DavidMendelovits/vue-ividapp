@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
+    "firebase": "^7.13.2",
     "video.js": "^7.7.5",
     "videojs-framebyframe": "^1.0.1",
     "videojs-hotkeys": "^0.2.25",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vuefire": "^2.2.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",
@@ -35,7 +37,9 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-console": "off"
+    }
   },
   "browserslist": [
     "> 1%",
