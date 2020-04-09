@@ -13,9 +13,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item, idx) in results" :key='idx'>
+          <tr v-for="(item, index) in results" :key='index' v-on:click='selectItem(index)'>
             <td>{{ item.rating }}</td>
-            <td>{{ item.source }}</td>
+            <td><v-btn>{{ item.source }}</v-btn></td>
           </tr>
         </tbody>
       </template>
@@ -28,7 +28,8 @@
 export default {
     name: 'playlist',
     props: {
-        results: { type: Array }
+        results: { type: Array },
+        selectItem: { type: Function }
     },
     mounted() {
         console.log("List Mounted" + this.results)

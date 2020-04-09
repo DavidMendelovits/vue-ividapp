@@ -2,13 +2,13 @@
     <v-container class='d-flex flex-row'>
     <div id='video-module'>
         <v-row>
-        <v-col>
+        <v-col flex-shrink-1 :cols='4'>
         <div class='searchlist'>
             <div class='search-box'>
                 <SearchBox :search='search' />
             </div>
             <div class='list'>
-                <playlist :results='searchResults' />
+                <playlist :results='searchResults' :selectItem='selectVideo'/>
             </div>
         </div>
         </v-col>
@@ -56,8 +56,10 @@ export default {
     props: {
 
     },
-    firebase: {
-        
+    firebase() {
+        return {
+            searchResults: db.collection('entries')
+        }
     },
     methods: {
         search(term) {
@@ -71,6 +73,19 @@ export default {
             .then(snapshot => {
                 this.searchResults = snapshot.docs.map(doc => doc.data());
             })
+        },
+        selectVideo(index) {
+            console.log('select video')
+            console.log(index)
+            console.log(this.currentVideo)
+            console.log(this.searchResults)
+
+            if (index < 0 || index > this.searchResults.length) {
+                console.log('impossible!')
+            }
+            this.currentVideo = {} ;
+            this.$set(this.currentVideo, 'src', this.searchResults[index].source)
+            console.log(this.currentVideo)
         }
     },
     mounted() {

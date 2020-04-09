@@ -26,6 +26,14 @@ export default {
             player: null
         }
     },
+    watch: {
+        currentVideo: function (item) {
+            console.log("watching")
+            console.log(item)
+            this.player.src(item.src)
+            this.$forceUpdate()
+        }
+    },
     mounted() {
         let playerOptions = {
             autoplay: true,
@@ -61,6 +69,11 @@ export default {
         this.player = videojs(this.$refs.videoPlayer, playerOptions, function onPlayerReady() {
             console.log('onPlayerReady', this);
         })
+    },
+    updated() {
+        console.log('currentvideo updated')
+        console.log(this.player.src + this.currentVideo.src)
+        this.player.src(this.currentVideo.src)
     },
     beforeDestroy() {
         if (this.player) {
