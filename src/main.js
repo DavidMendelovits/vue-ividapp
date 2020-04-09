@@ -4,6 +4,7 @@ import { firestorePlugin } from 'vuefire'
 import firebase from 'firebase/app'
 import 'firebase/firestore';
 import { Config } from './firebaseconfig';
+import vuetify from './plugins/vuetify';
 Vue.config.productionTip = false
 
 
@@ -12,5 +13,6 @@ firebase.initializeApp(Config);
 export const db = firebase.firestore();
 
 new Vue({
-  render: h => h(App),
+  vuetify,
+  render: h => h(App)
 }).$mount('#app')

@@ -14,7 +14,7 @@ console.log(hotkeys);
 export default {
     name: "VideoPlayer",
     props: {
-        itemInfo: {
+        currentVideo: {
             type: Object,
             default() {
                 return {};
@@ -30,9 +30,10 @@ export default {
         let playerOptions = {
             autoplay: true,
             controls: true,
+            fluid: true,
             sources: [
                 {
-                    src: this.itemInfo.src,
+                    src: this.currentVideo.src,
                     type: 'video/mp4'
                 }
             ],

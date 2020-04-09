@@ -1,23 +1,34 @@
 <template>
     <div class='scrollable-list'>
-        <article v-for="(entry, idx) in results" :key="idx">
-            <a :href="entry.source"> {{entry.source}}</a>
-        </article>
+        <v-simple-table
+        :dense="dense"
+        :fixed-header="fixedHeader"
+        :height="height"
+        >
+        <template v-slot:default>
+        <thead>
+          <tr>
+            <th class="text-left">Rating</th>
+            <th class="text-left">Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item, idx) in results" :key='idx'>
+            <td>{{ item.rating }}</td>
+            <td>{{ item.source }}</td>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
     </div>
 </template>
 
 <script>
-import { db } from '../main';
 
 export default {
     name: 'playlist',
     props: {
-        search: String,
-    },
-    firestore() {
-        return {
-            results : db.collection('entries').where('tags', 'array-contains', this.search)
-        }
+        results: { type: Array }
     },
     mounted() {
         console.log("List Mounted" + this.results)
